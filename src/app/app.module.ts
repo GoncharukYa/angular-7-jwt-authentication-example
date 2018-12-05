@@ -2,9 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-// used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+import {MatTableModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -12,25 +10,27 @@ import { routing } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
+import { UsertableComponent } from './components/usertable/usertable.component';
+import {UserService} from './_services/user.service';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
+        MatTableModule,
         routing
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        UsertableComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        // provider used to create fake backend
-        fakeBackendProvider
+        UserService
     ],
     bootstrap: [AppComponent]
 })

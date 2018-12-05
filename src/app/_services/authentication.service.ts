@@ -19,17 +19,17 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
+    login(email: string, password: string) {
+        return this.http.post<any>(`${config.apiUrl}/auth/login`, { email, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user && user.data.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
+                    localStorage.setItem('currentUser', JSON.stringify(user.data));
+                    this.currentUserSubject.next(user.data);
                 }
 
-                return user;
+                return user.data;
             }));
     }
 

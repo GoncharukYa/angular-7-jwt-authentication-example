@@ -1,0 +1,40 @@
+<div>
+    <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Имя </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.last_name}} {{user.first_name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>    
+            <mat-cell *matCellDef="let user">
+                <a mat-fab routerLink="/"> {{user.email}} </a>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef> Телефон </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dob">
+            <mat-header-cell *matHeaderCellDef> DOB </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.dob}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="avatar">
+            <mat-header-cell *matHeaderCellDef> Аватар </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.avatar}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef> Роль </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.role}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="created_at">
+            <mat-header-cell *matHeaderCellDef> Содзано </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.created_at}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="updated_at">
+            <mat-header-cell *matHeaderCellDef> Обновлено </mat-header-cell>    
+            <mat-cell *matCellDef="let user"> {{user.updated_at}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+</div>
